@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "xppMenuLabels.h"
-
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -44,7 +42,6 @@ void MainWindow::openAutoWindow (void) {
 /*										Menus											*/
 /****************************************************************************************/
 void MainWindow::setupMenus(void) {
-
 	for (int i=0; i<xppMenus.size(); i++) {
 		menuButtons.push_back(new xppMenuButton(xppMenus.at(i), this));
 		ui->toolBar->addWidget(menuButtons.at(i));
@@ -55,4 +52,5 @@ void MainWindow::setupMenus(void) {
 /****************************************************************************************/
 void MainWindow::setupConnections (void) {
 	connect(menuButtons.at(8)->actionList.at(9), SIGNAL(triggered()), this, SLOT(close()));
+	connect(menuButtons.at(8)->actionList.at(3), SIGNAL(triggered()), this, SLOT(openAutoWindow()));
 }

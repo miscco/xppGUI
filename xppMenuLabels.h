@@ -8,6 +8,7 @@
 struct xppDialog {
 	QString				Title;
 	QStringList			EditLabels;
+	QStringList			CheckLabels;
 	QStringList			SwitchLabels;
 	unsigned			actionIndex;
 };
@@ -19,5 +20,6 @@ struct xppMenu {
 };
 
 extern QList<xppMenu> xppMenus;
+extern QList<xppMenu> autoMenus;
 
 #endif // MENULABELS_H

@@ -17,12 +17,14 @@ SOURCES	 += main.cpp\
 			mainwindow.cpp \
 			autowindow.cpp \
     xppMenuLabels.cpp \
-    xppMenuButton.cpp
+    xppMenuButton.cpp \
+    xppMenuDialog.cpp
 
 HEADERS  += mainwindow.h \
 			autowindow.h \
     xppMenuLabels.h \
-    xppMenuButton.h
+    xppMenuButton.h \
+    xppMenuDialog.h
 
 FORMS    += mainwindow.ui \
 			autowindow.ui

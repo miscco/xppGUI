@@ -6,6 +6,7 @@
 
 #include "autowindow.h"
 #include "xppMenuButton.h"
+#include "xppMenuLabels.h"
 
 namespace Ui {
 class MainWindow;
