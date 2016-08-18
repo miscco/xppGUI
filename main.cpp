@@ -1,7 +1,8 @@
-#include "xppMainWindow.h"
 #include <QApplication>
 
 #include <xppCore.h>
+
+#include "GUI/xppMainWindow.h"
 
 int main(int argc, char *argv[])
 {
