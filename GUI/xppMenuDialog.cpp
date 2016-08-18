@@ -1,10 +1,5 @@
 #include "xppMenuDialog.h"
 
-xppMenuDialog::xppMenuDialog(QWidget *parent) :
-	QDialog(parent)
-{
-}
-
 xppMenuDialog::xppMenuDialog(xppDialog dialog, QWidget *parent):
 	QDialog(parent)
 {
@@ -33,7 +28,8 @@ xppMenuDialog::xppMenuDialog(xppDialog dialog, QWidget *parent):
 				dialogLayout->addLayout(editLayout.back(), 0, row++);
 				editLayout.push_back(new QFormLayout());
 			}
-			editLayout.back()->addRow(dialog.EditLabels.at(i), new QLineEdit());
+			lineEdit.push_back(new QLineEdit());
+			editLayout.back()->addRow(dialog.EditLabels.at(i), lineEdit.back());
 		}
 		dialogLayout->addLayout(editLayout.back(), 0, row++);
 	}
@@ -46,7 +42,8 @@ xppMenuDialog::xppMenuDialog(xppDialog dialog, QWidget *parent):
 				dialogLayout->addLayout(layoutChecks, 0, row++, Qt::AlignTop);
 				layoutChecks = new QVBoxLayout();
 			}
-			layoutChecks->addWidget(new QCheckBox(dialog.CheckLabels.at(i)));
+			checkBox.push_back(new QCheckBox(dialog.CheckLabels.at(i)));
+			layoutChecks->addWidget(checkBox.back());
 		}
 		dialogLayout->addLayout(layoutChecks, 0, row++, Qt::AlignTop);
 	}
@@ -61,7 +58,8 @@ xppMenuDialog::xppMenuDialog(xppDialog dialog, QWidget *parent):
 				dialogLayout->addLayout(layoutSwitch, 0, row++, Qt::AlignTop);
 				layoutSwitch = new QVBoxLayout();
 			}
-			switchGroup->addButton(new QCheckBox(dialog.SwitchLabels.at(i)), i);
+			switchBox.push_back(new QCheckBox(dialog.SwitchLabels.at(i)));
+			switchGroup->addButton(switchBox.back(), i);
 			layoutSwitch->addWidget(switchGroup->button(i));
 		}
 		/* Define the selected version */

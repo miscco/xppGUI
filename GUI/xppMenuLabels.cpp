@@ -77,7 +77,7 @@ xppMenu Graphics = {
 					.SwitchLabels = {},
 					.actionIndex = 0},
 				   {.Title		= "Edit Curve",
-					.EditLabels = {"Curve Id:"
+					.EditLabels = {"Curve Id:",
 								   "X-Axis:",
 								   "Y-Axis:",
 								   "Z-Axis:",
@@ -90,8 +90,8 @@ xppMenu Graphics = {
 					.EditLabels = {"Axes Fontsize:",
 								   "Font:",
 								   "Linewidth:"},
-					.CheckLabels ={"Black/White (*) or Colored",
-								   "Land (*)  or Port"},
+					.CheckLabels ={"Colored   (*) or Black/White",
+								   "Landscape (*)  or Portrai"},
 					.SwitchLabels = {},
 					.actionIndex = 4},
 				   {.Title		= "Axes options",
@@ -140,18 +140,19 @@ xppMenu Integrate = {
 								   "End:"},
 					.CheckLabels ={"Reset Storage",
 								   "Use old ICs",
+								   "Cycle Colors",
 								   "Movie"},
 					.SwitchLabels = {},
 					.actionIndex = 0},
 				   {.Title		= "Double Range Integrate",
 					.EditLabels = {"Range Over 1:",
+								   "Steps 1:",
 								   "Start 1:",
 								   "End 1:",
-								   "Steps 1:",
 								   "Range Over 2:",
+								   "Steps 2:",
 								   "Start 2:",
-								   "End 2:",
-								   "Steps 2:"},
+								   "End 2:"},
 					.CheckLabels ={"Reset Storage",
 								   "Use old ICs",
 								   "Cycle Colors",
@@ -344,25 +345,27 @@ xppMenu Window = {
 	}
 };
 
-QList<xppMenu> xppMenus {Integrate,
-			Continue,
-			Nullclines,
-			DirectionField,
-			Phasespace,
-			Kinescope,
-			Graphics,
-			Numerics,
-			File,
-			Parameters,
-			Erase,
-			Window,
-			Text,
-			Singular,
-			View,
-			Plot,
-			Restore,
-			Parameter3D,
-			BoundaryValues};
+QList<xppMenu> xppMenus {
+	Integrate,
+	Continue,
+	Nullclines,
+	DirectionField,
+	Phasespace,
+	Kinescope,
+	Graphics,
+	Numerics,
+	File,
+	Parameters,
+	Erase,
+	Window,
+	Text,
+	Singular,
+	View,
+	Plot,
+	Restore,
+	Parameter3D,
+	BoundaryValues
+};
 /****************************************************************************************/
 /*										Auto window										*/
 /****************************************************************************************/
@@ -517,7 +520,8 @@ xppMenu autoUserPeriod= {
 	}
 };
 
-QList<xppMenu> autoMenus {	autoParameter,
+QList<xppMenu> autoMenus {
+	autoParameter,
 			autoAxes,
 			autoNumerics,
 			autoRun,
@@ -526,4 +530,4 @@ QList<xppMenu> autoMenus {	autoParameter,
 			autoClear,
 			autoRedraw,
 			autoFile
-						 };
+};

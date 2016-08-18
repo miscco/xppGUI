@@ -1,13 +1,14 @@
 #include <QApplication>
 
-#include <xppCore.h>
-
-#include "GUI/xppMainWindow.h"
+#include "xppCore.h"
+#include "xppMainWindow.h"
 
 int main(int argc, char *argv[])
 {
+	xppCore xpp;
+
 	QApplication a(argc, argv);
-	MainWindow w;
+	xppMainWindow w(&xpp);
 	w.show();
 
 	return a.exec();

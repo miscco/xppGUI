@@ -1,9 +1,9 @@
 #include "xppAutoWindow.h"
 #include "ui_autowindow.h"
 
-AutoWindow::AutoWindow(QWidget *parent) :
+xppAutoWindow::xppAutoWindow(xppCore *XPP, QWidget *parent) :
 	QMainWindow(parent),
-	ui(new Ui::AutoWindow)
+	ui(new Ui::xppAutoWindow)
 {
 	ui->setupUi(this);
 
@@ -16,6 +16,9 @@ AutoWindow::AutoWindow(QWidget *parent) :
 	/* Prevent togleable toolbars */
 	setContextMenuPolicy(Qt::NoContextMenu);
 
+	/* Connect to xpp core structure */
+	xpp = XPP;
+
 	/* Setup the individual toolbar menues */
 	setupMenus();
 
@@ -23,7 +26,7 @@ AutoWindow::AutoWindow(QWidget *parent) :
 	setupConnections();
 }
 
-AutoWindow::~AutoWindow()
+xppAutoWindow::~xppAutoWindow()
 {
 	delete ui;
 }
@@ -36,7 +39,7 @@ AutoWindow::~AutoWindow()
 /****************************************************************************************/
 /*										Menus											*/
 /****************************************************************************************/
-void AutoWindow::setupMenus(void) {
+void xppAutoWindow::setupMenus(void) {
 	for (int i=0; i<autoMenus.size(); i++) {
 		menuButtons.push_back(new xppMenuButton(autoMenus.at(i), this));
 		ui->toolBar->addWidget(menuButtons.at(i));
@@ -46,6 +49,6 @@ void AutoWindow::setupMenus(void) {
 /****************************************************************************************/
 /*										Connections										*/
 /****************************************************************************************/
-void AutoWindow::setupConnections (void) {
+void xppAutoWindow::setupConnections (void) {
 	connect(menuButtons.at(8)->actionList.at(15), SIGNAL(triggered()), this, SLOT(close()));
 }

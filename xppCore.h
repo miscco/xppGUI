@@ -12,9 +12,8 @@ class xppCore
 public:
 	xppCore();
 
-private:
-	xppPlotWindow mainPlotWindow;
-	xppPlotWindow autoPlotWindow;
+	xppAutoSettings autoSettings;
+	xppMainSettings mainSettings;
 };
 
 #endif // XPPCORE_H

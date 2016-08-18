@@ -30,9 +30,16 @@ private:
 	QList<QVBoxLayout*> checkLayout;
 	QList<QVBoxLayout*> switchLayout;
 
+	QList<QLineEdit*>	lineEdit;
+	QList<QCheckBox*>	checkBox;
+	QList<QCheckBox*>	switchBox;
+
 	int					numCols,
 						numRows,
 						row;
+
+	friend class xppAutoWindow;
+	friend class xppMainWindow;
 };
 
 #endif // XPPMENUDIALOG_H

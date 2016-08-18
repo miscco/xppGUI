@@ -4,7 +4,6 @@
 #include <QString>
 #include <QStringList>
 
-
 struct xppDialog {
 	QString				Title;
 	QStringList			EditLabels;

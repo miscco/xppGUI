@@ -24,6 +24,9 @@ private:
 	QMenu*					buttonMenu;
 	QList<xppMenuDialog*>	dialogList;
 	QAction					*pushAction;
+
+	friend class xppAutoWindow;
+	friend class xppMainWindow;
 };
 
 #endif // XPPMENUBUTTON_H

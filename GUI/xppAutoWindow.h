@@ -4,30 +4,35 @@
 #include <QMainWindow>
 #include <QPushButton>
 
-#include <xppMenuButton.h>
-#include <xppMenuLabels.h>
+#include "xppCore.h"
+
+#include "xppMenuButton.h"
+#include "xppMenuLabels.h"
 
 namespace Ui {
-class AutoWindow;
+class xppAutoWindow;
 }
 
-class AutoWindow : public QMainWindow
+class xppAutoWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	explicit AutoWindow(QWidget *parent = 0);
-	~AutoWindow();
+	explicit xppAutoWindow(xppCore *XPP, QWidget *parent = 0);
+	~xppAutoWindow();
 
 public slots:
 	//void displayDialog(void);
 
 private:
-	Ui::AutoWindow *ui;
+	Ui::xppAutoWindow *ui;
 
 	/* Buttons of the diferent menus */
 	QList<QPushButton*>			mainMenuButtons;
 	QList<xppMenuButton*>		menuButtons;
+
+	/* Pointer to the xpp core structure */
+	xppCore		*xpp;
 
 	/* Helper functions for GUI initialization */
 	void setupMenus				(void);

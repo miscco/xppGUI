@@ -1,10 +1,5 @@
 #include "xppMenuButton.h"
 
-xppMenuButton::xppMenuButton(QWidget *parent) :
-	QPushButton(parent)
-{
-}
-
 xppMenuButton::xppMenuButton(xppMenu menu, QWidget *parent) :
 	QPushButton(menu.Title, parent)
 {
