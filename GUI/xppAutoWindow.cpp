@@ -1,5 +1,5 @@
 #include "xppAutoWindow.h"
-#include "ui_autowindow.h"
+#include "ui_xppAutoWindow.h"
 
 xppAutoWindow::xppAutoWindow(xppCore *XPP, QWidget *parent) :
 	QMainWindow(parent),

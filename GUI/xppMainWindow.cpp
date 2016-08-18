@@ -1,6 +1,5 @@
 #include "xppMainWindow.h"
-#include "ui_mainwindow.h"
-
+#include "ui_xppMainWindow.h"
 
 enum xppMainButtons {
 	buttonIntegrate= 0,
