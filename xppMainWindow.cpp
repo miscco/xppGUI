@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "xppMainWindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -7,8 +7,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 
+	/* Remove the margins */
+	ui->gridLayout->setMargin(0);
+
 	/* Change the window title */
 	this->setWindowTitle("xppaut 8.0");
+
+	this->
 
 	/* Prevent toggleable toolbars */
 	setContextMenuPolicy(Qt::NoContextMenu);

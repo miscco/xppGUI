@@ -1,4 +1,4 @@
-#include "autowindow.h"
+#include "xppAutoWindow.h"
 #include "ui_autowindow.h"
 
 AutoWindow::AutoWindow(QWidget *parent) :
@@ -6,6 +6,9 @@ AutoWindow::AutoWindow(QWidget *parent) :
 	ui(new Ui::AutoWindow)
 {
 	ui->setupUi(this);
+
+	/* Remove the margins */
+	ui->gridLayout->setMargin(0);
 
 	/* Change the window title */
 	this->setWindowTitle("It's AUTO man!");

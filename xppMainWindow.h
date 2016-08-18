@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 
-#include "autowindow.h"
+#include "xppAutoWindow.h"
 #include "xppMenuButton.h"
 #include "xppMenuLabels.h"
 

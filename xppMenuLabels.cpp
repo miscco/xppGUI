@@ -1,8 +1,8 @@
 #include "xppMenuLabels.h"
 
-/****************************************************************************************/
-/*										Main window										*/
-/****************************************************************************************/
+/******************************************************************************/
+/*									Main window								  */
+/******************************************************************************/
 xppMenu BoundaryValues = {
 	.Title		= "&Boundary values",
 	.Labels		= {"&Range",
@@ -224,8 +224,7 @@ xppMenu Numerics = {
 									 "Dormance Prince &5",
 									 "Dormance Prince &83",
 									 "Rosen &23",
-									 "S&ymplectic"
-					},
+									 "S&ymplectic"},
 					.actionIndex = 7}
 	}
 };
@@ -292,9 +291,37 @@ xppMenu View = {
 	.Title		= "&View",
 	.Labels		= {"&2D",
 				   "&3D",
-				   "Array",
+				   "&Array",
 				   "&Toon"},
-	.Dialogs	= {}
+	.Dialogs	= {{.Title		= "2D View",
+					.EditLabels = {"X-Axis:",
+								   "Y-Axis:",
+								   "XLabel:",
+								   "YLabel:",
+								   "X-min:",
+								   "X-max:",
+								   "Y-min:",
+								   "Y-max:"},
+					.CheckLabels ={},
+					.SwitchLabels = {},
+					.actionIndex = 0},
+				   {.Title		= "3D View",
+					.EditLabels = {"X-Axis:",
+								   "Y-Axis:",
+								   "Z-Axis:",
+								   "XLabel:",
+								   "YLabel:",
+								   "ZLabel:",
+								   "X-min:",
+								   "X-max:",
+								   "Y-min:",
+								   "Y-max:",
+								   "Z-min:",
+								   "Z-max:"},
+					.CheckLabels ={},
+					.SwitchLabels = {},
+					.actionIndex = 1}
+	}
 };
 
 xppMenu Window = {
@@ -310,8 +337,7 @@ xppMenu Window = {
 					.EditLabels = {"X min",
 								   "X max",
 								   "Y min",
-								   "Y max"
-					},
+								   "Y max"},
 					.CheckLabels ={},
 					.SwitchLabels = {},
 					.actionIndex = 0}
@@ -486,18 +512,18 @@ xppMenu autoUserPeriod= {
 									 "&6",
 									 "&7",
 									 "&8",
-									 "&9",},
+									 "&9"},
 					.actionIndex = 0}
 	}
 };
 
 QList<xppMenu> autoMenus {	autoParameter,
-							autoAxes,
-							autoNumerics,
-							autoRun,
-							autoGrab,
-							autoUserPeriod,
-							autoClear,
-							autoRedraw,
-							autoFile
-};
+			autoAxes,
+			autoNumerics,
+			autoRun,
+			autoGrab,
+			autoUserPeriod,
+			autoClear,
+			autoRedraw,
+			autoFile
+						 };
