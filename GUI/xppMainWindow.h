@@ -24,7 +24,13 @@ public:
 	~xppMainWindow();
 
 private slots:
-	void openAutoWindow(void);
+	void openAutoWindow				(void);
+	void evaluateGraphicsDialogs	(void);
+	void evaluateIntegrateDialogs	(void);
+	void evaluateNumericsDialogs	(void);
+	void evaluatePhasespaceDialogs	(void);
+	void evaluateViewDialogs		(void);
+	void evaluateWindowDialogs		(void);
 
 private:
 	Ui::xppMainWindow *ui;
@@ -46,6 +52,7 @@ private:
 	void initPhasespaceDialogs	(void);
 	void initViewDialogs		(void);
 	void initWindowDialogs		(void);
+
 	void setupMenus				(void);
 	void setupConnections		(void);
 };

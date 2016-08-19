@@ -82,10 +82,10 @@ struct xppMainSettings {
 	double dt		= 0.05;
 	double trans	= 0.0;
 
-	double tmax     = 20.0;
-	double tmin		= 0.0;
-	double dtmax    = 20.0;
-	double dtmin	= 0.0;
+	double tMax     = 20.0;
+	double tMin		= 0.0;
+	double dtMax    = 20.0;
+	double dtMin	= 0.0;
 
 	std::string	logFile		= "";
 	std::string outputFile  = "";

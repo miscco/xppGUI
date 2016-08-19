@@ -33,6 +33,7 @@ private:
 	QList<QLineEdit*>	lineEdit;
 	QList<QCheckBox*>	checkBox;
 	QList<QCheckBox*>	switchBox;
+	QButtonGroup		*switchGroup;
 
 	int					numCols,
 						numRows,

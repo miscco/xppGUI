@@ -43,19 +43,19 @@ xppMainWindow::xppMainWindow(xppCore *XPP, QWidget *parent) :
 	plot =&xpp->mainSettings.mainPlotWindow;
 
 	/* Setup the individual toolbar menues */
-	setupMenus();
+	setupMenus ();
 
 	/* Setup the signal connections */
-	setupConnections();
+	setupConnections ();
 
 	/* Initialize the plot widget */
 	initPlot();
-	initGraphicsDialogs();
-	initIntegrateDialogs();
-	initNumericsDialogs();
-	initPhasespaceDialogs();
-	initViewDialogs();
-	initWindowDialogs();
+	initGraphicsDialogs ();
+	initIntegrateDialogs ();
+	initNumericsDialogs ();
+	initPhasespaceDialogs ();
+	initViewDialogs ();
+	initWindowDialogs ();
 }
 
 xppMainWindow::~xppMainWindow()
@@ -92,7 +92,7 @@ void xppMainWindow::openAutoWindow (void) {
 /****************************************************************************************/
 /*										Menus											*/
 /****************************************************************************************/
-void xppMainWindow::setupMenus(void) {
+void xppMainWindow::setupMenus (void) {
 	for (int i=0; i<xppMenus.size(); i++) {
 		menuButtons.push_back(new xppMenuButton(xppMenus.at(i), this));
 		ui->toolBar->addWidget(menuButtons.at(i));
@@ -102,7 +102,7 @@ void xppMainWindow::setupMenus(void) {
 /****************************************************************************************/
 /*									Dialog inits										*/
 /****************************************************************************************/
-void xppMainWindow::initGraphicsDialogs(void) {
+void xppMainWindow::initGraphicsDialogs (void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonGraphics)->dialogList;
 
 	/* New Curve */
@@ -146,7 +146,7 @@ void xppMainWindow::initGraphicsDialogs(void) {
 	dList.at(4)->switchBox.at(0)->setChecked(true);
 }
 
-void xppMainWindow::initIntegrateDialogs(void) {
+void xppMainWindow::initIntegrateDialogs (void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonIntegrate)->dialogList;
 
 	/* Range Integrate */
@@ -181,14 +181,14 @@ void xppMainWindow::initIntegrateDialogs(void) {
 	/* TODO PARSE */
 }
 
-void xppMainWindow::initNumericsDialogs(void) {
+void xppMainWindow::initNumericsDialogs (void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonNumerics)->dialogList;
 
 	/* Method */
 	dList.at(0)->switchBox.at(0)->setChecked(true);
 }
 
-void xppMainWindow::initPhasespaceDialogs(void) {
+void xppMainWindow::initPhasespaceDialogs (void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonPhasespace)->dialogList;
 
 	/* Period */
@@ -197,7 +197,7 @@ void xppMainWindow::initPhasespaceDialogs(void) {
 	/* TODO READ ODE */
 }
 
-void xppMainWindow::initViewDialogs(void) {
+void xppMainWindow::initViewDialogs (void) {
 	for (xppMenuDialog *dialog : menuButtons.at(buttonView)->dialogList) {
 		unsigned i=0;
 		bool is3D = dialog->lineEdit.size()==12;
@@ -225,7 +225,7 @@ void xppMainWindow::initViewDialogs(void) {
 	}
 }
 
-void xppMainWindow::initWindowDialogs(void) {
+void xppMainWindow::initWindowDialogs (void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonWindow)->dialogList;
 	/* Window Range */
 	unsigned i=0;
@@ -233,6 +233,137 @@ void xppMainWindow::initWindowDialogs(void) {
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xMax));
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yMin));
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yMax));
+}
+/****************************************************************************************/
+/*									Dialog output										*/
+/****************************************************************************************/
+void xppMainWindow::evaluateGraphicsDialogs (void) {
+	QList<xppMenuDialog*> dList = menuButtons.at(buttonGraphics)->dialogList;
+
+	/* New Curve */
+	unsigned i=0;
+	plot->xLabel = dList.at(0)->lineEdit.at(i++)->text().toStdString();
+	plot->yLabel = dList.at(0)->lineEdit.at(i++)->text().toStdString();
+	plot->zLabel = dList.at(0)->lineEdit.at(i++)->text().toStdString();
+
+	/* Edit Curve */
+	i=0;
+	plot->xLabel = dList.at(1)->lineEdit.at(i++)->text().toStdString();
+	plot->yLabel = dList.at(1)->lineEdit.at(i++)->text().toStdString();
+	plot->zLabel = dList.at(1)->lineEdit.at(i++)->text().toStdString();
+
+	/* Postscript options */
+	i=0;
+	plot->xLabel = dList.at(2)->lineEdit.at(i++)->text().toStdString();
+	plot->yLabel = dList.at(2)->lineEdit.at(i++)->text().toStdString();
+	i=0;
+	dList.at(2)->checkBox.at(i++)->setChecked(true);
+	dList.at(2)->checkBox.at(i++)->setChecked(true);
+
+	/* Axes Options */
+	i=0;
+	plot->xOrigin = dList.at(3)->lineEdit.at(i++)->text().toDouble();
+	plot->yOrigin = dList.at(3)->lineEdit.at(i++)->text().toDouble();
+	plot->zOrigin = dList.at(3)->lineEdit.at(i++)->text().toDouble();
+	i=0;
+	plot->useXOrigin = dList.at(3)->checkBox.at(i++)->isChecked();
+	plot->useXOrigin = dList.at(3)->checkBox.at(i++)->isChecked();
+	plot->useXOrigin = dList.at(3)->checkBox.at(i++)->isChecked();
+
+	/* Colormap */
+	xpp->mainSettings.colorMap = xppColorMap(dList.at(4)->switchGroup->checkedId());
+}
+
+void xppMainWindow::evaluateIntegrateDialogs (void) {
+	QList<xppMenuDialog*> dList = menuButtons.at(buttonIntegrate)->dialogList;
+
+	/* Range Integrate */
+	unsigned i=0;
+	plot->xLabel = dList.at(0)->lineEdit.at(i++)->text().toStdString();
+	xpp->mainSettings.tMax = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	xpp->mainSettings.tMax = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	xpp->mainSettings.tMin = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	i=0;
+	/* TODO
+	dList.at(0)->checkBox.at(i++)->setChecked(true);
+	dList.at(0)->checkBox.at(i++)->setChecked(true);
+	dList.at(0)->checkBox.at(i++)->setChecked(false);
+	dList.at(0)->checkBox.at(i++)->setChecked(false);
+	*/
+
+	/* Double Range Integrate */
+	i=0;
+	plot->xLabel = dList.at(1)->lineEdit.at(i++)->text().toStdString();
+	xpp->mainSettings.tMax = dList.at(1)->lineEdit.at(i++)->text().toDouble();
+	xpp->mainSettings.tMax = dList.at(1)->lineEdit.at(i++)->text().toDouble();
+	xpp->mainSettings.tMin = dList.at(1)->lineEdit.at(i++)->text().toDouble();
+	plot->xLabel = dList.at(1)->lineEdit.at(i++)->text().toStdString();
+	xpp->mainSettings.tMax = dList.at(1)->lineEdit.at(i++)->text().toDouble();
+	xpp->mainSettings.tMax = dList.at(1)->lineEdit.at(i++)->text().toDouble();
+	xpp->mainSettings.tMin = dList.at(1)->lineEdit.at(i++)->text().toDouble();
+	i=0;
+	/* TODO
+	dList.at(1)->checkBox.at(i++)->setChecked(true);
+	dList.at(1)->checkBox.at(i++)->setChecked(true);
+	dList.at(1)->checkBox.at(i++)->setChecked(false);
+	dList.at(1)->checkBox.at(i++)->setChecked(false);
+	dList.at(1)->checkBox.at(i++)->setChecked(false);
+	*/
+	/* TODO PARSE */
+}
+
+void xppMainWindow::evaluateNumericsDialogs (void) {
+	QList<xppMenuDialog*> dList = menuButtons.at(buttonNumerics)->dialogList;
+
+	/* Method */
+	xpp->mainSettings.method = xppMethod(dList.at(0)->switchGroup->checkedId());
+}
+
+void xppMainWindow::evaluatePhasespaceDialogs (void) {
+	QList<xppMenuDialog*> dList = menuButtons.at(buttonPhasespace)->dialogList;
+
+	/* Period */
+	//dList.at(0)->lineEdit.at(0)->setText(QString::number(2));
+
+	/* TODO READ ODE */
+}
+
+void xppMainWindow::evaluateViewDialogs (void) {
+	for (xppMenuDialog *dialog : menuButtons.at(buttonView)->dialogList) {
+		unsigned i=0;
+		bool is3D = dialog->lineEdit.size()==12;
+		/* Variable names */
+		dialog->lineEdit.at(i++)->setText("t");
+		dialog->lineEdit.at(i++)->setText("");
+		if(is3D) {
+			dialog->lineEdit.at(i++)->setText("");
+		}
+		/* Axis label */
+		plot->xLabel = dialog->lineEdit.at(i++)->text().toStdString();
+		plot->yLabel = dialog->lineEdit.at(i++)->text().toStdString();
+		if(is3D) {
+			plot->zLabel = dialog->lineEdit.at(i++)->text().toStdString();
+		}
+		/* Axis limits */
+		plot->xMax = dialog->lineEdit.at(i++)->text().toDouble();
+		plot->xMin = dialog->lineEdit.at(i++)->text().toDouble();
+		plot->yMax = dialog->lineEdit.at(i++)->text().toDouble();
+		plot->yMin = dialog->lineEdit.at(i++)->text().toDouble();
+		if(is3D) {
+			plot->zMax = dialog->lineEdit.at(i++)->text().toDouble();
+			plot->zMin = dialog->lineEdit.at(i++)->text().toDouble();
+		}
+	}
+}
+
+void xppMainWindow::evaluateWindowDialogs (void) {
+	QList<xppMenuDialog*> dList = menuButtons.at(buttonWindow)->dialogList;
+	/* Window Range */
+	unsigned i=0;
+	plot->xMax = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	plot->xMin = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	plot->yMax = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	plot->yMin = dList.at(0)->lineEdit.at(i++)->text().toDouble();
 }
 
 /****************************************************************************************/

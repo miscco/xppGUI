@@ -52,7 +52,7 @@ xppMenuDialog::xppMenuDialog(xppDialog dialog, QWidget *parent):
 	 * for exclusive switches */
 	if (!dialog.SwitchLabels.isEmpty()) {
 		QVBoxLayout  *layoutSwitch = new QVBoxLayout();
-		QButtonGroup *switchGroup  = new QButtonGroup(this);
+		switchGroup  = new QButtonGroup(this);
 		for (int i=0; i<dialog.SwitchLabels.size(); i++) {
 			if(i%numRows==0 && i!=0 && i!=dialog.SwitchLabels.size()-1) {
 				dialogLayout->addLayout(layoutSwitch, 0, row++, Qt::AlignTop);
