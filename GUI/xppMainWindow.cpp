@@ -51,7 +51,11 @@ xppMainWindow::xppMainWindow(xppCore *XPP, QWidget *parent) :
 	/* Initialize the plot widget */
 	initPlot();
 	initGraphicsDialogs();
+	initIntegrateDialogs();
+	initNumericsDialogs();
+	initPhasespaceDialogs();
 	initViewDialogs();
+	initWindowDialogs();
 }
 
 xppMainWindow::~xppMainWindow()
@@ -96,7 +100,7 @@ void xppMainWindow::setupMenus(void) {
 }
 
 /****************************************************************************************/
-/*										Dialogs											*/
+/*									Dialog inits										*/
 /****************************************************************************************/
 void xppMainWindow::initGraphicsDialogs(void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonGraphics)->dialogList;
@@ -152,27 +156,27 @@ void xppMainWindow::initIntegrateDialogs(void) {
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
 	i=0;
-	dList.at(2)->checkBox.at(i++)->setChecked(true);
-	dList.at(2)->checkBox.at(i++)->setChecked(true);
-	dList.at(2)->checkBox.at(i++)->setChecked(false);
-	dList.at(2)->checkBox.at(i++)->setChecked(false);
+	dList.at(0)->checkBox.at(i++)->setChecked(true);
+	dList.at(0)->checkBox.at(i++)->setChecked(true);
+	dList.at(0)->checkBox.at(i++)->setChecked(false);
+	dList.at(0)->checkBox.at(i++)->setChecked(false);
 
 	/* Double Range Integrate */
 	i=0;
-	dList.at(0)->lineEdit.at(i++)->setText(QString::fromStdString(plot->xLabel));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(20));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::fromStdString(plot->yLabel));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(20));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yLim.first));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yLim.second));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::fromStdString(plot->xLabel));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(20));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::fromStdString(plot->yLabel));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(20));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->yLim.first));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->yLim.second));
 	i=0;
-	dList.at(2)->checkBox.at(i++)->setChecked(true);
-	dList.at(2)->checkBox.at(i++)->setChecked(true);
-	dList.at(2)->checkBox.at(i++)->setChecked(false);
-	dList.at(2)->checkBox.at(i++)->setChecked(false);
-	dList.at(2)->checkBox.at(i++)->setChecked(false);
+	dList.at(1)->checkBox.at(i++)->setChecked(true);
+	dList.at(1)->checkBox.at(i++)->setChecked(true);
+	dList.at(1)->checkBox.at(i++)->setChecked(false);
+	dList.at(1)->checkBox.at(i++)->setChecked(false);
+	dList.at(1)->checkBox.at(i++)->setChecked(false);
 
 	/* TODO PARSE */
 }
@@ -203,11 +207,13 @@ void xppMainWindow::initViewDialogs(void) {
 		if(is3D) {
 			dialog->lineEdit.at(i++)->setText("");
 		}
+		/* Axis label */
 		dialog->lineEdit.at(i++)->setText(QString::fromStdString(plot->xLabel));
 		dialog->lineEdit.at(i++)->setText(QString::fromStdString(plot->yLabel));
 		if(is3D) {
 			dialog->lineEdit.at(i++)->setText(QString::fromStdString(plot->zLabel));
 		}
+		/* Axis limits */
 		dialog->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
 		dialog->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
 		dialog->lineEdit.at(i++)->setText(QString::number(plot->yLim.first));
@@ -220,8 +226,7 @@ void xppMainWindow::initViewDialogs(void) {
 }
 
 void xppMainWindow::initWindowDialogs(void) {
-	QList<xppMenuDialog*> dList = menuButtons.at(buttonPhasespace)->dialogList;
-
+	QList<xppMenuDialog*> dList = menuButtons.at(buttonWindow)->dialogList;
 	/* Window Range */
 	unsigned i=0;
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));

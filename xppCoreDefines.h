@@ -121,12 +121,6 @@ struct xppAutoSettings {
 	unsigned NPr	= 50;
 	unsigned NCol	= 4;
 
-	double	Ds		= 1E-3;
-
-	dpair	DsRange   = std::make_pair(1E-5, 0.5);
-	dpair	ParRange  = std::make_pair(0.0, 10.0);
-	dpair	NormRange = std::make_pair(0.0, 1000);
-
 	double	EPSL	= 1E-7;
 	double	EPSU	= 1E-7;
 	double	EPSS	= 1E-7;
@@ -138,6 +132,11 @@ struct xppAutoSettings {
 	double	ITNW	= 7;
 	double	NWTN	= 3;
 	double	IADS	= 1;
+
+	double	Ds		= 1E-3;
+	dpair	DsRange   = std::make_pair(1E-5, 0.5);
+	dpair	ParRange  = std::make_pair(0.0, 10.0);
+	dpair	NormRange = std::make_pair(0.0, 1000);
 
 	xppColor stableEquilibriumColor	  = RED;
 	xppColor unstableEquilibriumColor = BLACK;
@@ -168,14 +167,10 @@ struct xppMainSettings {
 	double dt		= 0.05;
 	double trans	= 0.0;
 
-	stringList  xPlot = {""};
-	stringList	yPlot = {""};
-	stringList	zPlot = {""};
-
-	std::vector<dpair> tLim = {std::make_pair( 0.0, 20.0)};
-	std::vector<dpair> xLim = {std::make_pair( 0.0, 20.0)};
-	std::vector<dpair> yLim = {std::make_pair(-5.0, 5.0)};
-	std::vector<dpair> zLim = {std::make_pair(-5.0, 5.0)};
+	double tmax     = 20.0;
+	double tmin		= 0.0;
+	double dtmax    = 20.0;
+	double dtmin	= 0.0;
 
 	std::string	logFile		= "";
 	std::string outputFile  = "";
@@ -192,7 +187,6 @@ struct xppMainSettings {
 	xppLineStyle defaultLineStyle = lsLine;
 
 	xppMethod method= METHOD_RK4;
-	std::vector<dpair> dtLim = {std::make_pair( 0.0, 20.0)};
 
 	xppPlotWindow mainPlotWindow;
 };
