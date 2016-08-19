@@ -48,14 +48,16 @@ xppMainWindow::xppMainWindow(xppCore *XPP, QWidget *parent) :
 	/* Setup the signal connections */
 	setupConnections ();
 
-	/* Initialize the plot widget */
-	initPlot();
+	/* Initialize the dialogs*/
 	initGraphicsDialogs ();
 	initIntegrateDialogs ();
 	initNumericsDialogs ();
 	initPhasespaceDialogs ();
 	initViewDialogs ();
 	initWindowDialogs ();
+
+	/* Update the plot */
+	updatePlot();
 }
 
 xppMainWindow::~xppMainWindow()
@@ -67,7 +69,7 @@ xppMainWindow::~xppMainWindow()
 /****************************************************************************************/
 /*								GUI initialization helpers								*/
 /****************************************************************************************/
-void xppMainWindow::initPlot (void) {
+void xppMainWindow::updatePlot (void) {
 	ui->plottWidget->xAxis->setLabel(QString::fromStdString(plot->xLabel));
 	ui->plottWidget->xAxis->setRange(plot->xMin, plot->xMax);
 	ui->plottWidget->xAxis->setAutoTickStep(false);
@@ -272,6 +274,8 @@ void xppMainWindow::evaluateGraphicsDialogs (void) {
 
 	/* Colormap */
 	xpp->mainSettings.colorMap = xppColorMap(dList.at(4)->switchGroup->checkedId());
+
+	updatePlot();
 }
 
 void xppMainWindow::evaluateIntegrateDialogs (void) {
@@ -354,6 +358,7 @@ void xppMainWindow::evaluateViewDialogs (void) {
 			plot->zMin = dialog->lineEdit.at(i++)->text().toDouble();
 		}
 	}
+	updatePlot();
 }
 
 void xppMainWindow::evaluateWindowDialogs (void) {
@@ -364,6 +369,7 @@ void xppMainWindow::evaluateWindowDialogs (void) {
 	plot->xMin = dList.at(0)->lineEdit.at(i++)->text().toDouble();
 	plot->yMax = dList.at(0)->lineEdit.at(i++)->text().toDouble();
 	plot->yMin = dList.at(0)->lineEdit.at(i++)->text().toDouble();
+	updatePlot();
 }
 
 /****************************************************************************************/

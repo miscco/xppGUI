@@ -45,7 +45,6 @@ private:
 	xppPlotWindow				*plot;
 
 	/* Helper functions for GUI initialization */
-	void initPlot				(void);
 	void initGraphicsDialogs	(void);
 	void initIntegrateDialogs	(void);
 	void initNumericsDialogs	(void);
@@ -55,6 +54,8 @@ private:
 
 	void setupMenus				(void);
 	void setupConnections		(void);
+
+	void updatePlot				(void);
 };
 
 #endif // MAINWINDOW_H
