@@ -1,0 +1,30 @@
+#ifndef XPPCOLOR_H
+#define XPPCOLOR_H
+
+enum xppColor {
+	WHITE,
+	RED,
+	REDORANGE,
+	ORANGE,
+	YELLOWORANGE,
+	YELLOW,
+	YELLOWGREEN,
+	GREEN,
+	BLUEGREEN,
+	BLUE,
+	PURPLE,
+	BLACK
+};
+
+enum xppColorMap {
+	C_NORM,
+	C_PERIODIC,
+	C_HOT,
+	C_COOL,
+	C_REDBLUE,
+	C_GRAY,
+	C_CUBHLX
+};
+
+#endif // XPPCOLOR_H
+

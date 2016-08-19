@@ -69,14 +69,14 @@ xppMainWindow::~xppMainWindow()
 /****************************************************************************************/
 void xppMainWindow::initPlot (void) {
 	ui->plottWidget->xAxis->setLabel(QString::fromStdString(plot->xLabel));
-	ui->plottWidget->xAxis->setRange(plot->xLim.first, plot->xLim.second);
+	ui->plottWidget->xAxis->setRange(plot->xMin, plot->xMax);
 	ui->plottWidget->xAxis->setAutoTickStep(false);
-	ui->plottWidget->xAxis->setTickStep(ceil(plot->xLim.second-plot->xLim.first)/4);
+	ui->plottWidget->xAxis->setTickStep(ceil(plot->xMax-plot->xMin)/4);
 
 	ui->plottWidget->yAxis->setLabel(QString::fromStdString(plot->yLabel));
-	ui->plottWidget->yAxis->setRange(plot->yLim.first, plot->yLim.second);
+	ui->plottWidget->yAxis->setRange(plot->yMin, plot->yMax);
 	ui->plottWidget->yAxis->setAutoTickStep(false);
-	ui->plottWidget->yAxis->setTickStep(ceil(plot->yLim.second-plot->yLim.first)/4);
+	ui->plottWidget->yAxis->setTickStep(ceil(plot->yMax-plot->yMin)/4);
 
 	ui->plottWidget->replot();
 }
@@ -153,8 +153,8 @@ void xppMainWindow::initIntegrateDialogs(void) {
 	unsigned i=0;
 	dList.at(0)->lineEdit.at(i++)->setText(QString::fromStdString(plot->xLabel));
 	dList.at(0)->lineEdit.at(i++)->setText(QString::number(20));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
+	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xMin));
+	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xMax));
 	i=0;
 	dList.at(0)->checkBox.at(i++)->setChecked(true);
 	dList.at(0)->checkBox.at(i++)->setChecked(true);
@@ -165,12 +165,12 @@ void xppMainWindow::initIntegrateDialogs(void) {
 	i=0;
 	dList.at(1)->lineEdit.at(i++)->setText(QString::fromStdString(plot->xLabel));
 	dList.at(1)->lineEdit.at(i++)->setText(QString::number(20));
-	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
-	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->xMin));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->xMax));
 	dList.at(1)->lineEdit.at(i++)->setText(QString::fromStdString(plot->yLabel));
 	dList.at(1)->lineEdit.at(i++)->setText(QString::number(20));
-	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->yLim.first));
-	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->yLim.second));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->yMin));
+	dList.at(1)->lineEdit.at(i++)->setText(QString::number(plot->yMax));
 	i=0;
 	dList.at(1)->checkBox.at(i++)->setChecked(true);
 	dList.at(1)->checkBox.at(i++)->setChecked(true);
@@ -214,13 +214,13 @@ void xppMainWindow::initViewDialogs(void) {
 			dialog->lineEdit.at(i++)->setText(QString::fromStdString(plot->zLabel));
 		}
 		/* Axis limits */
-		dialog->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
-		dialog->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
-		dialog->lineEdit.at(i++)->setText(QString::number(plot->yLim.first));
-		dialog->lineEdit.at(i++)->setText(QString::number(plot->yLim.second));
+		dialog->lineEdit.at(i++)->setText(QString::number(plot->xMin));
+		dialog->lineEdit.at(i++)->setText(QString::number(plot->xMax));
+		dialog->lineEdit.at(i++)->setText(QString::number(plot->yMin));
+		dialog->lineEdit.at(i++)->setText(QString::number(plot->yMax));
 		if(is3D) {
-			dialog->lineEdit.at(i++)->setText(QString::number(plot->zLim.first));
-			dialog->lineEdit.at(i++)->setText(QString::number(plot->zLim.second));
+			dialog->lineEdit.at(i++)->setText(QString::number(plot->zMin));
+			dialog->lineEdit.at(i++)->setText(QString::number(plot->zMax));
 		}
 	}
 }
@@ -229,10 +229,10 @@ void xppMainWindow::initWindowDialogs(void) {
 	QList<xppMenuDialog*> dList = menuButtons.at(buttonWindow)->dialogList;
 	/* Window Range */
 	unsigned i=0;
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.first));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xLim.second));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yLim.first));
-	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yLim.second));
+	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xMin));
+	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->xMax));
+	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yMin));
+	dList.at(0)->lineEdit.at(i++)->setText(QString::number(plot->yMax));
 }
 
 /****************************************************************************************/

@@ -2,64 +2,10 @@
 #define XPPCOREDEFINES_H
 
 #include <string>
-#include <utility>
 #include <vector>
 
-typedef std::pair<double, double> dpair;
-typedef std::vector<std::string>  stringList;
-
-enum xppColor {
-	WHITE,
-	RED,
-	REDORANGE,
-	ORANGE,
-	YELLOWORANGE,
-	YELLOW,
-	YELLOWGREEN,
-	GREEN,
-	BLUEGREEN,
-	BLUE,
-	PURPLE,
-	BLACK
-};
-
-enum xppColorMap {
-	C_NORM,
-	C_PERIODIC,
-	C_HOT,
-	C_COOL,
-	C_REDBLUE,
-	C_GRAY,
-	C_CUBHLX
-};
-
-enum xppLineStyle {
-	lsNone,
-	lsLine,
-	lsStepLeft,
-	lsStepRight,
-	lsStepCenter,
-	lsImpulse
-};
-
-enum xppMarkerStyle {
-	msNone,
-	msDot,
-	msCross,
-	msPlus,
-	msCircle,
-	msDisc,
-	msSquare,
-	msDiamond,
-	msStar,
-	msTriangle,
-	msTriangleInverted,
-	msCrossSquare,
-	msPlusSquare,
-	msCrossCircle,
-	msPlusCircle,
-	msPeace
-};
+#include "xppColor.h"
+#include "xppPlots.h"
 
 enum xppMethod {
 	METHOD_DISCRETE = 0,
@@ -78,41 +24,6 @@ enum xppMethod {
 	METHOD_RB23,
 	METHOD_SYMPLECT,
 	NUM_METHODS
-};
-struct xppPlotOptions {
-	xppLineStyle	lineStyle		= lsLine;
-	double			lineWidth		= 1.0;
-	xppMarkerStyle	markerStyle		= msCross;
-	double			markerSize		= 1.0;
-
-	xppColor		lineColor		= BLACK;
-	xppColor		markerColor		= BLACK;
-};
-
-struct xppPlotWindow {
-	dpair xLim = std::make_pair( 0.0, 20.0);
-	dpair yLim = std::make_pair(-5.0, 5.0);
-	dpair zLim = std::make_pair(-5.0, 5.0);
-
-	std::string xLabel = "time";
-	std::string	yLabel = "";
-	std::string	zLabel = "";
-
-	bool xGrid		= false;
-	bool xGridMinor	= false;
-	bool yGrid		= false;
-	bool yGridMinor	= false;
-	bool zGrid		= false;
-	bool zGridMinor	= false;
-	bool useXOrigin	= false;
-	bool useYOrigin	= false;
-	bool useZOrigin	= false;
-
-	double xOrigin  = 0.0;
-	double yOrigin  = 0.0;
-	double zOrigin  = 0.0;
-
-	std::vector<xppPlotOptions> plotOptions;
 };
 
 struct xppAutoSettings {
@@ -134,9 +45,13 @@ struct xppAutoSettings {
 	double	IADS	= 1;
 
 	double	Ds		= 1E-3;
-	dpair	DsRange   = std::make_pair(1E-5, 0.5);
-	dpair	ParRange  = std::make_pair(0.0, 10.0);
-	dpair	NormRange = std::make_pair(0.0, 1000);
+	double  DsMax	= 0.5;
+	double	DsMin	= 1E-5;
+
+	double  ParMax	= 10.0;
+	double	ParMin	= 0.0;
+	double  NormMax	= 1000.0;
+	double	NormMin	= 0.0;
 
 	xppColor stableEquilibriumColor	  = RED;
 	xppColor unstableEquilibriumColor = BLACK;

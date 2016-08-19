@@ -13,24 +13,26 @@ TEMPLATE = app
 
 include(GUI/qcustomplot/QCustomPlot.pri)
 
-SOURCES	 += main.cpp\
-			xppCore.cpp \
-			GUI/xppAutoWindow.cpp \
-			GUI/xppMainWindow.cpp \
-			GUI/xppMenuButton.cpp \
-			GUI/xppMenuDialog.cpp \
-			GUI/xppMenuLabels.cpp
+SOURCES	 += main.cpp \
+	    xppCore.cpp \
+	    GUI/xppAutoWindow.cpp \
+	    GUI/xppMainWindow.cpp \
+	    GUI/xppMenuButton.cpp \
+	    GUI/xppMenuDialog.cpp \
+	    GUI/xppMenuLabels.cpp
 
-HEADERS  += xppCore.h \
-			xppCoreDefines.h \
-			GUI/xppAutoWindow.h \
-			GUI/xppMainWindow.h \
-			GUI/xppMenuButton.h \
-			GUI/xppMenuDialog.h \
-			GUI/xppMenuLabels.h
+HEADERS  += xppColor.h		\
+	    xppCore.h		\
+	    xppCoreDefines.h	\
+	    xppPlots.h		\
+	    GUI/xppAutoWindow.h \
+	    GUI/xppMainWindow.h \
+	    GUI/xppMenuButton.h \
+	    GUI/xppMenuDialog.h \
+	    GUI/xppMenuLabels.h
 
 FORMS    += GUI/xppMainWindow.ui \
-			GUI/xppAutoWindow.ui
+	    GUI/xppAutoWindow.ui
 
 INCLUDEPATH += GUI
 
